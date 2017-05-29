@@ -17,10 +17,7 @@ The goals / steps of this project are the following:
 [image1]: ./output_images/car_not_car.JPG
 [image2]: ./output_images/HOG_example.JPG
 [image3]: ./output_images/sliding_windows.JPG
-[image4]: ./output_images/bboxes_and_heat.JPG
-[image5]: ./output_images/labels_map.JPG
-[image6]: ./output_images/output_bboxes.JPG
-[video1]: ./project_video.mp4
+[video1]: ./result_project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -113,7 +110,7 @@ As it can be seen in figures above the vehicles have been detected entirely. Tha
 
 The code for this step is contained in 11th (for test) and in 16th code cells of the IPython notebook. 
 
-The HOG-sub sampling with the scale = 1.5 using HLS 3-channel HOG features plus spatially binned color and histograms of color in the feature vector has been used to avoid multiple HOG calculations. The function `find_cars` from the lesson has been applied to extract features using hog sub-sampling and make predictions.
+The HOG-sub sampling with two scales = 1.7 and 1.2 using HLS 3-channel HOG features plus spatially binned color and histograms of color in the feature vector has been used to avoid multiple HOG calculations. The function `find_cars` from the lesson has been applied to extract features using hog sub-sampling and make predictions.
 
 The filtering of false positives have been produced (s. details below).
 
@@ -125,7 +122,7 @@ The filtering of false positives have been produced (s. details below).
 
 All objects in the project video are detected without drop outs and most false positives are filtered out.
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./result_project_video.mp4)
 
 
 ####2. Filter for false positives and multiple detections
@@ -135,18 +132,6 @@ In order to optimize the performance of the classifier and remove false positive
  - 2nd threshold = 6 overlappings to remove false positive over 10 consecutive frames
 
 To associate the individual blobs in the heatmap the `scipy.ndimage.measurements.label()` has been used. This helps to combine overlapping detections.
-    
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
-
-### Here are six frames and their corresponding heatmaps:
-
-![alt text][image4]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image5]
-
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image6]
 
 ---
 
